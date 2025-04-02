@@ -23,7 +23,7 @@
             <div
                 style="width: 100%; height: 60px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
                 <p style="font-size: 18px; font-weight: 700; color: #555;">도고쿤 생일선물 펀딩 프로젝트 😆</p>
-                <img src="./images/shareIcon.webp" alt="shareIcon" style="width: 30px; height: 30px;">
+                <img id="shareIcon" src="./images/shareIcon.webp" alt="shareIcon" style="width: 30px; height: 30px;">
             </div>
 
             <!-- 이미지 캐로셀 -->
@@ -103,15 +103,39 @@
             </div>
 
             <!-- 버튼 -->
-            <div style="width: 100%; height: 65px; background: #5155F5; display: flex; justify-content: center; align-items: center;"
+            <div style="width: 100%; height: 70px; background: #5155F5; display: flex; justify-content: center; align-items: center; cursor: pointer;"
                 onclick="window.open('https://qr.kakaopay.com/Ej81rIaf5', '_blank');">
-                <p style="font-size: 20px; font-weight: 500; color: #FFF; margin-left: 20px;">
+                <p style="font-size: 18px; font-weight: 600; color: #FFF; margin-left: 20px;">
                     도고쿤에게 생일선물 후원하기
                 </p>
                 <img src="./images/Right-alt.svg" alt="Right-alt" style="width: 32px; height: auto;">
             </div>
         </div>
     </div>
+
+    <div id="copyAlert" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: #333; color: #fff; padding: 10px 20px; border-radius: 8px;
+            font-size: 14px; display: none; z-index: 999;">
+        링크가 복사되었어요! 📋
+    </div>
+
+    <script>
+        const shareIcon = document.getElementById("shareIcon");
+        const copyAlert = document.getElementById("copyAlert");
+
+        shareIcon.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(window.location.href);
+                copyAlert.style.display = "block";
+
+                setTimeout(() => {
+                    copyAlert.style.display = "none";
+                }, 2000);
+            } catch (err) {
+                alert("복사에 실패했습니다 😢");
+            }
+        });
+    </script>
 </body>
 
 </html>
